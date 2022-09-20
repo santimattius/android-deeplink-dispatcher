@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp' version '1.7.0-1.0.6'
+}
+
+android {
+    namespace 'com.santimattius.deeplink.navigation'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.santimattius.deeplink.navigation"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    sourceSets {
+        debug {
+            java.srcDirs += ['build/generated/ksp/debug/kotlin']
+        }
+        release {
+            java.srcDirs += ['build/generated/ksp/release/kotlin']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+}
+
+dependencies {
+    androidCoreDependencies()
+    lifecycleDependencies()
+    composeDependencies()
+    koinDependencies()
+    roomDependencies()
+    testing()
+}
