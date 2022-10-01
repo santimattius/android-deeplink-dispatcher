@@ -22,8 +22,15 @@ project.ext {
         debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     }
 
+    accompanistDependencies = Group {
+        implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+    }
+
     lifecycleDependencies = Group {
-        implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_version"
+        implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+        implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+        implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
+
     }
 
     roomDependencies = Group {

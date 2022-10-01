@@ -7,6 +7,10 @@ fun generate(max: Int) = (0..max).map {
     DeepLink(title = "DeepLink $it", uri = Uri.parse("test://link/$it"))
 }
 
-data class DeepLink(val title: String, val uri: Uri) {
-    val id: String = UUID.randomUUID().toString()
+data class DeepLink(
+    val id: String = UUID.randomUUID().toString(),
+    val title: String,
+    val uri: Uri,
+) {
+
 }

@@ -7,10 +7,13 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.santimattius.deeplink.dispatcher.di.AppModule
+import com.santimattius.deeplink.dispatcher.ui.MainViewModel
 import com.santimattius.deeplink.dispatcher.ui.theme.DeeplinkNavigationTheme
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
-import org.koin.ksp.generated.*
+import org.koin.dsl.module
+import org.koin.ksp.generated.module
 
 class MainApplication : Application() {
 
@@ -18,7 +21,9 @@ class MainApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MainApplication)
-            modules(AppModule().module)
+            modules(AppModule().module + module {
+                viewModel { MainViewModel(get()) }
+            })
         }
     }
 }

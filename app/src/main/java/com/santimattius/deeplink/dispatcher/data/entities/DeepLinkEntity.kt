@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "deeplink")
 data class DeepLinkEntity(
-    @PrimaryKey val uid: String,
+    @PrimaryKey @ColumnInfo(name = "id") val uid: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "uri") val uri: String,
 )

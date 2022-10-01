@@ -1,4 +1,4 @@
-package com.santimattius.deeplink.dispatcher.data
+package com.santimattius.deeplink.dispatcher.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.santimattius.deeplink.navigation'
+    namespace 'com.santimattius.deeplink.dispatcher'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.santimattius.deeplink.navigation"
+        applicationId "com.santimattius.deeplink.dispatcher"
         minSdk 23
         targetSdk 33
         versionCode 1
@@ -61,6 +61,7 @@ dependencies {
     androidCoreDependencies()
     lifecycleDependencies()
     composeDependencies()
+    accompanistDependencies()
     koinDependencies()
     roomDependencies()
     testing()

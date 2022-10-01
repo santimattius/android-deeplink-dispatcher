@@ -1,11 +1,12 @@
 project.ext {
-    lifecycle_runtime_version = '2.5.1'
+    lifecycle_version = '2.6.0-alpha02'
     core_ktx_version = '1.9.0'
 
     compose_ui_version = '1.2.0'
     material_compose_version = '1.2.1'
     activity_compose_version = '1.5.1'
 
+    accompanist_version = '0.25.1'
 }
 
 allprojects {

@@ -2,11 +2,11 @@ package com.santimattius.deeplink.dispatcher.di
 
 import android.app.Application
 import androidx.room.Room
-import com.santimattius.deeplink.dispatcher.data.AppDatabase
+import com.santimattius.deeplink.dispatcher.data.db.AppDatabase
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 
-@Module(includes = [DataModule::class, UiModule::class])
+@Module(includes = [DataModule::class])
 class AppModule {
 
     @Single

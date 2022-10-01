@@ -19,18 +19,20 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.santimattius.deeplink.navigation.R
+import com.santimattius.deeplink.dispatcher.R
 
 @Stable
 data class DeepLinkDialogState(var title: String, var uri: String) {
 
     fun isValid(): Boolean {
         if (title.isEmpty() || uri.isEmpty()) return false
-        return runCatching { Uri.parse(uri).isDeepLink() }.getOrDefault(false)
+        return runCatching {
+            Uri.parse(uri).isDeepLink()
+        }.getOrDefault(false)
     }
 
     private fun Uri.isDeepLink(): Boolean {
-        return scheme.isNullOrBlank() && host.isNullOrBlank() && path.isNullOrBlank()
+        return !scheme.isNullOrBlank() && !host.isNullOrBlank() && !path.isNullOrBlank()
     }
 }
 
@@ -89,15 +91,21 @@ fun DeepLinkDialog(
 
                 TextInput(
                     value = currentState.title,
+                    placeHolder = "Example",
                     onValueChange = {
                         currentState = currentState.copy(title = it)
                     },
                     error = error,
                 )
 
-                TextInput(value = currentState.uri, onValueChange = {
-                    currentState = currentState.copy(uri = it)
-                }, error = error)
+                TextInput(
+                    value = currentState.uri,
+                    placeHolder = "scheme://host/path",
+                    error = error,
+                    onValueChange = {
+                        currentState = currentState.copy(uri = it)
+                    }
+                )
 
                 Button(
                     onClick = {
@@ -123,6 +131,7 @@ fun DeepLinkDialog(
 @Composable
 private fun TextInput(
     value: String,
+    placeHolder: String = "",
     onValueChange: (String) -> Unit,
     error: String,
 ) {
@@ -143,7 +152,7 @@ private fun TextInput(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent
         ),
-        placeholder = { Text(text = "Enter value") },
+        placeholder = { Text(text = placeHolder) },
         value = value,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         onValueChange = onValueChange)
