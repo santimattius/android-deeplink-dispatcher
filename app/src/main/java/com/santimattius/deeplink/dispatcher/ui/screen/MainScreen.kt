@@ -100,7 +100,7 @@ fun MainScreen(
                 }
                 state.data.isEmpty() -> {
                     Center {
-                        Text(text = "Agregar tus deeplinks")
+                        Text(text = "Add your deeplinks")
                     }
                 }
                 else -> {
