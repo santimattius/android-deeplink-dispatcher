@@ -3,6 +3,7 @@ package com.santimattius.deeplink.dispatcher.ui.screen
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,6 +53,8 @@ fun UriHandler.safeOpenUri(context: Context, uri: String) {
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
     if (intent.resolveActivity(context.packageManager) != null) {
         openUri(uri)
+    } else {
+        Toast.makeText(context, "Deeplink $uri no supported", Toast.LENGTH_SHORT).show()
     }
 }
 

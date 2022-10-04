@@ -1,32 +1,21 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp' version '1.7.0-1.0.6'
 }
 
 android {
-    namespace 'com.santimattius.deeplink.dispatcher'
+    namespace 'com.santimattius.deeplink.airbnb'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.santimattius.deeplink.dispatcher"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
         vectorDrawables {
             useSupportLibrary true
-        }
-    }
-
-    sourceSets {
-        debug {
-            java.srcDirs += ['build/generated/ksp/debug/kotlin']
-        }
-        release {
-            java.srcDirs += ['build/generated/ksp/release/kotlin']
         }
     }
 
@@ -54,7 +43,6 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-
 }
 
 ksp {
@@ -64,13 +52,9 @@ ksp {
 }
 
 dependencies {
-    implementation project(path: ':airbnb')
     androidCoreDependencies()
     lifecycleDependencies()
     composeDependencies()
-    accompanistDependencies()
-    koinDependencies()
-    roomDependencies()
     airbnbDependencies()
     testing()
 }
